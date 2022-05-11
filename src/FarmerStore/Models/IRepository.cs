@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace FarmerStore.Models.Entities
+namespace FarmerStore.Models
 {
     public interface IRepository
     {
