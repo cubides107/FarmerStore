@@ -1,6 +1,10 @@
 using FarmerStore.Data;
-using FarmerStore.Models.Entities;
+using FarmerStore.Models;
+using FarmerStore.Models.Products;
 using FarmerStore.Models.Repositories;
+using FarmerStore.Models.Validators;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,10 +13,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 //Agregar context
-builder.Services.AddDbContext<FarmerStoreContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("FarmerStoreContext")));
+builder.Services.AddDbContext<FarmerStoreContext>(
+    options => options.UseSqlServer(builder.Configuration.GetConnectionString("FarmerStoreContext")));
 
 //Injeccion de dependencias
 builder.Services.AddScoped<IRepository, FarmerStoreSQL>();
+
+//Configurar validaciones para modelos
+builder.Services.AddMvc().AddFluentValidation();
+builder.Services.AddTransient<IValidator<Product>, ProductValidator>();
 
 var app = builder.Build();
 

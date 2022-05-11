@@ -1,5 +1,4 @@
 ﻿using FarmerStore.Data;
-using FarmerStore.Models.Entities;
 using System.Linq.Expressions;
 
 namespace FarmerStore.Models.Repositories
