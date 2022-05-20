@@ -1,5 +1,17 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@using FarmerStore.Models.Clients
+@model ClientsViewModel
+
+<form asp-action="Register">
+    <div class="row">
+        <div class="col">
+            <input type="text" class="form-control" asp-for="Name" placeholder="First name" aria-label="First name">
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" asp-for="LastName" placeholder="Last name" aria-label="Last name">
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" asp-for="DocumentId" placeholder="Docuemnto de Identidad" aria-label="Docuemento de Identidad">
+        </div>
+        <button type="submit" class="btn btn-primary">Agregar</button>
+    </div>
+</form>

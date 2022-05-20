@@ -3,6 +3,7 @@ using FarmerStore.Models;
 using FarmerStore.Models.Products;
 using FarmerStore.Models.Repositories;
 using FarmerStore.Models.Validators;
+using FarmerStore.Services;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +19,8 @@ builder.Services.AddDbContext<FarmerStoreContext>(
 
 //Injeccion de dependencias
 builder.Services.AddScoped<IRepository, FarmerStoreSQL>();
+builder.Services.AddScoped<ClientsService>();
+
 
 //Configurar validaciones para modelos
 builder.Services.AddMvc().AddFluentValidation();
