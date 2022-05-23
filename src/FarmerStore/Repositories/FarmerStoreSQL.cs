@@ -1,4 +1,5 @@
 ﻿using FarmerStore.Data;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace FarmerStore.Models.Repositories
@@ -36,6 +37,11 @@ namespace FarmerStore.Models.Repositories
             {
                 throw new Exception($"{e.Message}");
             }
+        }
+
+        public async Task<T> Get<T>(Expression<Func<T, bool>> expression) where T : Entity
+        {
+            return await context.Set<T>().FirstOrDefaultAsync(expression);
         }
 
         public async Task Save<T>(T obj) where T : Entity

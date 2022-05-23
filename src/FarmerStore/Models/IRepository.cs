@@ -10,7 +10,7 @@ namespace FarmerStore.Models
         /// <typeparam name="T"></typeparam>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public Task Save<T> (T obj) where T: Entity;
+        public Task Save<T>(T obj) where T : Entity;
 
         /// <summary>
         /// Actualiza un entidad
@@ -32,6 +32,14 @@ namespace FarmerStore.Models
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public Task Commit();  
+        public Task Commit();
+
+        /// <summary>
+        /// Obtiene una entidad mediante una condicion
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="expression"></param>
+        /// <returns></returns>
+        public Task<T> Get<T>(Expression<Func<T, bool>> expression) where T : Entity;
     }
 }

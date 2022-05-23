@@ -1,23 +1,27 @@
 ﻿namespace FarmerStore.Models.Clients
 {
-    public class Client : Entity
+    public class User : Entity
     {
         public string Name { get; private set; }
 
         public string LastName { get; private set; }
 
+        public string Email { get; private set; }
+
+        public string Password { get; private set; }
+
         public string DocumentId { get; private set; }
 
-        private Client(string name, string lastName, string docuementId)
+        private User(string name, string lastName, string docuementId)
         {
             Name = name;
             LastName = lastName;
             DocumentId = docuementId;
         }
 
-        public static Client Build(string name, string lastName, string documentId)
+        public static User Build(string name, string lastName, string documentId)
         {
-            return new Client(name, lastName, documentId);
+            return new User(name, lastName, documentId);
         }
 
         ///Cambiar atributos principales del cliente

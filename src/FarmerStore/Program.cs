@@ -6,6 +6,7 @@ using FarmerStore.Models.Validators;
 using FarmerStore.Services;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,7 +20,16 @@ builder.Services.AddDbContext<FarmerStoreContext>(
 
 //Injeccion de dependencias
 builder.Services.AddScoped<IRepository, FarmerStoreSQL>();
-builder.Services.AddScoped<ClientsService>();
+builder.Services.AddScoped<UsersServices>();
+
+//Configuracion autenticacion por cookies
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Users/Login";
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+        options.AccessDeniedPath = "/Users/Login";
+    });
 
 
 //Configurar validaciones para modelos
